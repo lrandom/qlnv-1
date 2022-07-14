@@ -1,3 +1,6 @@
+<?php
+setcookie("views", "1000", time() + (60 * 60 * 24))//thời gian sống đc 1 ngày
+?>
 <!doctype html>
 <html lang="en">
 <head>
@@ -8,24 +11,6 @@
     <title>Document</title>
 </head>
 <body>
-<?php
-$arr = [3, 4, 6, 7];
-for ($i = 0; $i < count($arr); $i++) {
-    echo $arr[$i];
-}
 
-foreach ($arr as $item) {
-    echo $item;
-}
-
-$arr2 = [
-    "name" => "Luan",
-    "age" => 20
-];
-
-foreach ($arr2 as $k=>$v) {
-  echo 'key:'.$k.', value:'.$v;
-}
-?>
 </body>
 </html>
