@@ -163,6 +163,9 @@ $arr7 = [
     ]
 ];
 echo $arr7[0]["name"];//Luan
+var_dump($arr7);
+
+
 ?>
 </body>
 </html>
