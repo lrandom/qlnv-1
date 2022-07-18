@@ -6,7 +6,7 @@
 $duongDanGocThuMucDuAn = str_replace("admin/phong_ban",
     '', __DIR__);//đường dẫn thư mục gốc của dự án
 require_once $duongDanGocThuMucDuAn . 'models/PhongBan.php';//tuyệt đối
-
+$phongBan = new PhongBan();
 ?>
 
 <!doctype html>
@@ -16,7 +16,7 @@ require_once $duongDanGocThuMucDuAn . 'models/PhongBan.php';//tuyệt đối
     <meta name="viewport"
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Quản lý Phòng Ban - Thêm</title>
+    <title>Quản lý Phòng Ban - Sửa</title>
     <link rel="stylesheet"
           href="../../assets/bootstrap/css/bootstrap.min.css"/>
 </head>
@@ -36,6 +36,9 @@ if (isset($_POST['ten_phong_ban'])) {
         echo "<script>alert('Thêm thất bại');</script>";
     }
 }
+
+//lấy về 1 phòng ban theo mã phòng ban người dùng truyền lên
+$motPhongBan = $phongBan->layMotPhongBan($_GET['ma']);
 ?>
 <div class="container">
     <h5>Thêm Phòng Ban</h5>
@@ -45,11 +48,11 @@ if (isset($_POST['ten_phong_ban'])) {
             <label for="name" class="form-label">Tên Phòng Ban</label>
             <input type="text" class="form-control"
                    name="ten_phong_ban" id="name"
-                   placeholder="Tên Phòng Ban">
+                   placeholder="Tên Phòng Ban" value="<?php echo $motPhongBan['ten']; ?>">
         </div>
 
         <div>
-            <button class="btn btn-primary">Thêm</button>
+            <button class="btn btn-primary">Sửa</button>
         </div>
     </form>
 </div>
