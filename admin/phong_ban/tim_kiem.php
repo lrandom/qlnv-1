@@ -24,7 +24,7 @@ if (isset($_GET['tu_khoa'])) {
 </head>
 <body>
 <div class="container">
-    <?php require_once './../dung_chung/navbar.php';?>
+    <?php require_once './../dung_chung/navbar.php'; ?>
     <h5>Kết quả tìm kiếm theo từ khoá "<?php echo $_GET['tu_khoa']; ?>"</h5>
     <table class="table">
         <thead>

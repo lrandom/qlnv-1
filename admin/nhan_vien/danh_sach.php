@@ -45,7 +45,7 @@ if (isset($_GET['thao_tac'])) {
     <h5>Danh Sách Chức Vụ</h5>
     <div style="display: flex; gap:10px">
         <a href="/qlnv/admin/nhan_vien/them.php" class="btn btn-success">
-            Thêm Chức Vụ</a>
+            Thêm Nhân Viên</a>
         <form method="get" action="/qlnv/admin/nhan_vien/tim_kiem.php"
               style="display: flex;
     justify-items: center;

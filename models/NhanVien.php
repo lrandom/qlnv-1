@@ -116,7 +116,11 @@ class NhanVien extends DB
 
     public function timKiemTheoTenNhanVien($tenNhanVien)
     {
-        $sql = "SELECT * FROM nhan_vien WHERE 
+        $sql = "SELECT *,phong_ban.ten as ten_phong_ban,
+                chuc_vu.ten as ten_chuc_vu,nhan_vien.ma as ma_nhan_vien
+         FROM nhan_vien
+         INNER JOIN phong_ban ON nhan_vien.ma_phong_ban = phong_ban.ma
+         INNER JOIN chuc_vu ON nhan_vien.ma_chuc_vu = chuc_vu.ma WHERE 
                               ho_ten LIKE '%$tenNhanVien%'";
         //thuc thi cau lenh thong qua ket noi
         $ketQuaTraVe = $this->ketNoi->query($sql);

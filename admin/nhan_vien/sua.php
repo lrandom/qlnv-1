@@ -35,7 +35,7 @@ $danhSachPhongBan = $phongBan->layDanhSachPhongBan();
 <body>
 <?php
 //kiem tra xem co ton tai 1 du lieu day len hay khong
-if (isset($_POST['ten_chuc_vu'])) {
+if (isset($_POST['ho_ten'])) {
     //lay ve du lieu
     $hoTen = $_POST['ho_ten'];
     $ngaySinh = $_POST['ngay_sinh'];
@@ -117,7 +117,9 @@ if ($motNhanVien == null) {
                        placeholder="Tên Chức Vụ">-->
             <select name="ma_phong_ban" class="form-control">
                 <?php foreach ($danhSachPhongBan as $phongBan): ?>
-                    <option value="<?php echo $phongBan['ma'] ?>">
+                    <option <?php if ($phongBan['ma'] == $motNhanVien['ma_phong_ban']) {
+                        echo 'selected="selected"';
+                    } ?> value="<?php echo $phongBan['ma'] ?>">
                         <?php echo $phongBan['ten'] ?>
                     </option>
                 <?php endforeach; ?>
@@ -131,7 +133,11 @@ if ($motNhanVien == null) {
                     placeholder="Tên Chức Vụ">-->
             <select name="ma_chuc_vu" class="form-control">
                 <?php foreach ($danhSachChucVu as $chucVu): ?>
-                    <option value="<?php echo $chucVu['ma'] ?>">
+                    <option
+                        <?php if ($chucVu['ma'] == $motNhanVien['ma_chuc_vu']) {
+                            echo 'selected="selected"';
+                        } ?>
+                            value="<?php echo $chucVu['ma'] ?>">
                         <?php echo $chucVu['ten'] ?>
                     </option>
                 <?php endforeach; ?>
