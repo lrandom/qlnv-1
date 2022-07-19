@@ -27,7 +27,6 @@ class ChucVu extends DB
         return $motChucVu;
     }
 
-
     public function themMotChucVu($tenChucVu, $heSoLuong)
     {
         //prepared statement - cho phép chúng ta
