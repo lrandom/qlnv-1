@@ -5,6 +5,7 @@ if (isset($_GET['tu_khoa'])) {
     $tuKhoa = $_GET['tu_khoa'];
     $duongDanGocThuMucDuAn = str_replace("admin/nhan_vien",
         '', __DIR__);//đường dẫn thư mục gốc của dự án
+    require_once $duongDanGocThuMucDuAn . 'admin/kiem_tra_dang_nhap.php';
     require_once $duongDanGocThuMucDuAn . 'models/NhanVien.php';//tuyệt đối
     $nhanVien = new NhanVien();
     $danhSachNhanVien = $nhanVien->timKiemTheoTenNhanVien($tuKhoa);

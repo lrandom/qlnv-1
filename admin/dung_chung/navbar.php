@@ -17,6 +17,9 @@
                 <li class="nav-item">
                     <a class="nav-link" href="/qlnv/admin/nhan_vien/danh_sach.php">Nhân viên</a>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/qlnv/admin/dang_xuat.php">Đăng xuất</a>
+                </li>
             </ul>
         </div>
     </div>

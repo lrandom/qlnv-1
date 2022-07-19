@@ -5,9 +5,17 @@
 //echo __DIR__;//đường dẫn thư mục hiện tại
 $duongDanGocThuMucDuAn = str_replace("admin/nhan_vien",
     '', __DIR__);//đường dẫn thư mục gốc của dự án
+require_once $duongDanGocThuMucDuAn . 'admin/kiem_tra_dang_nhap.php';
+
 require_once $duongDanGocThuMucDuAn . 'models/NhanVien.php';//tuyệt đối
 $nhanVien = new NhanVien();
-$danhSachNhanVien = $nhanVien->layDanhSachNhanVien();
+$soBanGhiTrenMotTrang = 10;
+$trangHienTai = isset($_GET['trang_hien_tai']) && is_numeric($_GET['trang_hien_tai'])
+    ? $_GET['trang_hien_tai'] : 1; //nếu không có trang hiện tại thì mặc định là 1
+//tổng số trang
+$soTrang = ceil($nhanVien->layTongSoNhanVien() / $soBanGhiTrenMotTrang);
+$danhSachNhanVien = $nhanVien->layDanhSachNhanVien($trangHienTai, $soBanGhiTrenMotTrang);
+
 //kiểm tra xem có thao tác xoá hay không
 if (isset($_GET['thao_tac'])) {
     //người dùng nhấn vào thao tác
@@ -100,6 +108,33 @@ if (isset($_GET['thao_tac'])) {
         ?>
         </tbody>
     </table>
+
+    <nav aria-label="Page navigation example">
+        <ul class="pagination">
+            <?php
+            for ($i = 0; $i < $soTrang; $i++) {
+                ?>
+                <li class="page-item">
+                    <a class="page-link"
+                       href="/qlnv/admin/nhan_vien/danh_sach.php?trang_hien_tai=<?php echo $i + 1; ?>">
+                        <?php echo $i + 1; ?></a>
+                </li>
+                <?php
+            }
+            ?>
+
+        </ul>
+    </nav>
+
+
 </div>
 </body>
+
+<?php
+//$offset = ($currentPage - 1) * $limit;
+//1 trang có 10 bản ghi -> $limit = 10;
+//$offset = (1-1)*10; // 0 -> SELECT * FROM nhan_vien LIMIT 0,10;
+//$offset = (2-1)*10; // 10 -> SELECT * FROM nhan_vien LIMIT 10,10;
+//$offset = (3-1)*10; // 20 -> SELECT * FROM nhan_vien LIMIT 20,10;
+?>
 </html>

@@ -3,13 +3,24 @@ require_once "DB.php";
 
 class NhanVien extends DB
 {
-    public function layDanhSachNhanVien()
+
+    public function layTongSoNhanVien()
     {
+        $sql = "SELECT COUNT(*) AS tong_so_nhan_vien FROM nhan_vien";
+        $stmt = $this->ketNoi->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        return $result['tong_so_nhan_vien'];
+    }
+
+    public function layDanhSachNhanVien($trangHienTai, $soBanGhiTrenMotTrang = 10)
+    {
+        $viTriLayBanGhi = ($trangHienTai - 1) * $soBanGhiTrenMotTrang;
         $sql = "SELECT *,phong_ban.ten as ten_phong_ban,
                 chuc_vu.ten as ten_chuc_vu,nhan_vien.ma as ma_nhan_vien
          FROM nhan_vien
-         INNER JOIN phong_ban ON nhan_vien.ma_phong_ban = phong_ban.ma
-         INNER JOIN chuc_vu ON nhan_vien.ma_chuc_vu = chuc_vu.ma";
+         LEFT JOIN phong_ban ON nhan_vien.ma_phong_ban = phong_ban.ma
+         LEFT JOIN chuc_vu ON nhan_vien.ma_chuc_vu = chuc_vu.ma LIMIT $viTriLayBanGhi,$soBanGhiTrenMotTrang";
         //thực thi câu lệnh sql thông qua đối tượng kết nối (pdo)
         $ketQuaTraVe = $this->ketNoi->query($sql);
         $danhSachNhanVien = array();
@@ -119,8 +130,8 @@ class NhanVien extends DB
         $sql = "SELECT *,phong_ban.ten as ten_phong_ban,
                 chuc_vu.ten as ten_chuc_vu,nhan_vien.ma as ma_nhan_vien
          FROM nhan_vien
-         INNER JOIN phong_ban ON nhan_vien.ma_phong_ban = phong_ban.ma
-         INNER JOIN chuc_vu ON nhan_vien.ma_chuc_vu = chuc_vu.ma WHERE 
+         LEFT JOIN phong_ban ON nhan_vien.ma_phong_ban = phong_ban.ma
+         LEFT JOIN chuc_vu ON nhan_vien.ma_chuc_vu = chuc_vu.ma WHERE 
                               ho_ten LIKE '%$tenNhanVien%'";
         //thuc thi cau lenh thong qua ket noi
         $ketQuaTraVe = $this->ketNoi->query($sql);

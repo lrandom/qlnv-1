@@ -9,6 +9,7 @@ if (!isset($_GET['ma']) || !is_numeric($_GET['ma'])) {
 }
 $duongDanGocThuMucDuAn = str_replace("admin/nhan_vien",
     '', __DIR__);//đường dẫn thư mục gốc của dự án
+require_once $duongDanGocThuMucDuAn . 'admin/kiem_tra_dang_nhap.php';
 require_once $duongDanGocThuMucDuAn . 'models/NhanVien.php';//tuyệt đối
 require_once $duongDanGocThuMucDuAn . 'models/ChucVu.php';
 require_once $duongDanGocThuMucDuAn . 'models/PhongBan.php';
